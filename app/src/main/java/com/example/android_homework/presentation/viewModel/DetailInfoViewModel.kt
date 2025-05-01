@@ -40,6 +40,7 @@ class DetailInfoViewModel @Inject constructor(
                     DetailInfoState.Loaded(forecast)
                 }
             }.onFailure {error ->
+                Log.d("DEBUG", error.toString())
                 _state.update {
                     DetailInfoState.Error(mapError(error))
                 }

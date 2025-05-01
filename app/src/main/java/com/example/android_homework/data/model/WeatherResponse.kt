@@ -1,5 +1,7 @@
 package com.example.android_homework.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class WeatherResponse(
     val weather: List<Weather>,
     val main: Main,
@@ -14,6 +16,7 @@ data class Weather(
 
 data class Main(
     val temp: Double,
+    @SerializedName("feels_like")
     val feelsLike: Double,
     val humidity: Int,
     val pressure: Int

@@ -1,6 +1,5 @@
 package com.example.android_homework.data.repository
 
-import com.example.android_homework.data.model.ForecastResponse
 import com.example.android_homework.data.model.ForecastResponseItem
 import com.example.android_homework.data.model.WeatherResponse
 import com.example.android_homework.data.remote.WeatherApiService

@@ -1,5 +1,6 @@
 package com.example.android_homework.domain.usecase
 
+import android.util.Log
 import com.example.android_homework.domain.model.Forecast
 import com.example.android_homework.domain.model.ForecastItem
 import com.example.android_homework.domain.model.WeatherMainInfo
@@ -36,6 +37,6 @@ class GetCityForecastUseCase @Inject constructor(
     private fun formatTimestamp(timestamp: Long, zoneId: ZoneId = ZoneId.systemDefault()): String {
         return Instant.ofEpochSecond(timestamp)
             .atZone(zoneId)
-            .format(DateTimeFormatter.ofPattern("d MMMM HH:mm", Locale("ru")))
+            .format(DateTimeFormatter.ofPattern("d MMMM", Locale("ru")))
     }
 }
