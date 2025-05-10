@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Android-homework</string>
+    <string name="predict_5_day">Прогноз на 5 дней</string>
+    <string name="feels_like">Ощущается как</string>
+    <string name="wind">Ветер</string>
+    <string name="humidity">Влажность</string>
+    <string name="pressure">Давление</string>
+    <string name="temp_format">%1$d°C</string>
+    <string name="speed_format">%1$f м/с</string>
+    <string name="humidity_format">%1$d%%</string>
+    <string name="pressure_format">%1$d кПа</string>
+    <string name="label_format">%1$s:</string>
+    <string name="retry">Повторить</string>
+</resources>
