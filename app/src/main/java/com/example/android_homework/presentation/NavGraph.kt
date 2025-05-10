@@ -31,7 +31,9 @@ fun WeatherAppNavHost(
             arguments = listOf(navArgument("city") { type = NavType.StringType })
         ) { backStackEntry ->
             val city = backStackEntry.arguments?.getString("city") ?: ""
-            DetailScreen(city = city)
+            DetailScreen(city = city) {
+                navController.navigateUp()
+            }
         }
     }
 }

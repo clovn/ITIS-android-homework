@@ -5,7 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -27,13 +27,14 @@ import com.example.android_homework.presentation.theme.AndroidhomeworkTheme
 @Composable
 fun ErrorScreen(
     errorMessage: String,
-    onRetry: () -> Unit
+    modifier: Modifier = Modifier,
+    onRetry: () -> Unit,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = modifier
+            .fillMaxWidth()
             .background(Color.White)
             .padding(16.dp)
     ) {
@@ -63,5 +64,6 @@ fun ErrorScreen(
 @Composable
 private fun Preview() {
     AndroidhomeworkTheme {
+        ErrorScreen("Some troubles", Modifier.height(400.dp)) {}
     }
 }
