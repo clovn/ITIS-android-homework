@@ -36,7 +36,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -53,6 +55,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavController
 import com.example.android_homework.R
 import com.example.android_homework.domain.model.WeatherDetailed
 import com.example.android_homework.domain.model.ForecastItem
@@ -66,7 +69,7 @@ import java.util.Locale
 fun DetailScreen(
     city: String,
     viewModel: DetailInfoViewModel = hiltViewModel(),
-    onBackClick: () -> Unit
+    navController: NavController
 ) {
     val shimmerColors = listOf(
         Color.LightGray.copy(alpha = 0.6f),
@@ -82,11 +85,16 @@ fun DetailScreen(
             repeatMode = RepeatMode.Restart
         )
     )
-    val brush = Brush.linearGradient(
-        colors = shimmerColors,
-        start = Offset.Zero,
-        end = Offset(x = translateAnim.value, y = 0f)
-    )
+
+    val brush by remember {
+        derivedStateOf {
+            Brush.linearGradient(
+                colors = shimmerColors,
+                start = Offset.Zero,
+                end = Offset(x = translateAnim.value, y = 0f)
+            )
+        }
+    }
 
     LaunchedEffect(city){
         viewModel.fetchWeather(city)
@@ -152,7 +160,7 @@ fun DetailScreen(
         }
 
         FloatingActionButton(
-            onClick = { onBackClick() },
+            onClick = { navController.navigateUp() },
             containerColor = Color.Gray,
             shape = FloatingActionButtonDefaults.extendedFabShape,
             contentColor = Color.White,
