@@ -55,7 +55,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.NavController
 import com.example.android_homework.R
 import com.example.android_homework.domain.model.WeatherDetailed
 import com.example.android_homework.domain.model.ForecastItem
@@ -69,7 +68,7 @@ import java.util.Locale
 fun DetailScreen(
     city: String,
     viewModel: DetailInfoViewModel = hiltViewModel(),
-    navController: NavController
+    onBackClick: () -> Unit
 ) {
     val shimmerColors = listOf(
         Color.LightGray.copy(alpha = 0.6f),
@@ -160,7 +159,7 @@ fun DetailScreen(
         }
 
         FloatingActionButton(
-            onClick = { navController.navigateUp() },
+            onClick = { onBackClick() },
             containerColor = Color.Gray,
             shape = FloatingActionButtonDefaults.extendedFabShape,
             contentColor = Color.White,

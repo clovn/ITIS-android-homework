@@ -46,7 +46,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
 import coil3.compose.AsyncImage
 import com.example.android_homework.R
 import com.example.android_homework.data.Data
@@ -59,7 +58,8 @@ import java.util.Locale
 @Composable
 fun MainScreen(
     viewModel: MainViewModel = hiltViewModel(),
-    navController: NavController
+    onCityCardClick: (String) -> Unit,
+    onGraphClick: () -> Unit
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -75,12 +75,12 @@ fun MainScreen(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     items(weatherList) { weather ->
-                        CityCard(weather = weather, onClick = { navController.navigate("detail_screen/${weather.city}") })
+                        CityCard(weather = weather, onClick = { onCityCardClick(weather.city) })
                     }
                 }
 
                 FloatingActionButton(
-                    onClick = { navController.navigate("graph_screen") },
+                    onClick = { onGraphClick() },
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
                         .padding(16.dp)
