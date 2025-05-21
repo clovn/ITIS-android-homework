@@ -9,6 +9,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -21,8 +22,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Addchart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -53,7 +58,8 @@ import java.util.Locale
 @Composable
 fun MainScreen(
     viewModel: MainViewModel = hiltViewModel(),
-    onCityClick: (String) -> Unit
+    onCityCardClick: (String) -> Unit,
+    onGraphClick: () -> Unit
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -62,11 +68,30 @@ fun MainScreen(
         is UiState.Loading -> ShimmerEffectList(Data.citiesList.size)
         is UiState.Loaded -> {
             val weatherList = (state as UiState.Loaded).weatherList
-            LazyColumn {
-                items(weatherList) { weather ->
-                    CityCard(weather = weather, onClick = { onCityClick(weather.city) })
+            Box(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    items(weatherList) { weather ->
+                        CityCard(weather = weather, onClick = { onCityCardClick(weather.city) })
+                    }
+                }
+
+                FloatingActionButton(
+                    onClick = { onGraphClick() },
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(16.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Addchart,
+                        contentDescription = "Добавить"
+                    )
                 }
             }
+
         }
         is UiState.Error -> {
             val error = (state as UiState.Error).message
