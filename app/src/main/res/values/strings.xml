@@ -11,4 +11,7 @@
     <string name="pressure_format">%1$d кПа</string>
     <string name="label_format">%1$s:</string>
     <string name="retry">Повторить</string>
+    <string name="build_graph">Построить график</string>
+    <string name="numbers_semicolon">Значения через запятую</string>
+    <string name="dots_count">Количество точек</string>
 </resources>
