@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <array name="chart_colors">
+        <item>@android:color/holo_orange_light</item>
+        <item>@android:color/holo_blue_light</item>
+        <item>@android:color/holo_green_light</item>
+        <item>@android:color/holo_red_light</item>
+    </array>
 </resources>
